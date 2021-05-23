@@ -1,14 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { App } from "./App";
+import { createMainStore } from "./store";
+import { villainExamples } from "./data/villains";
+import { schemeExamples } from "./data/schemes";
+
+const mainInitialState = {
+  villains: [
+    { name: "Gargamel", power: "Magic", level: 1 },
+    ...villainExamples,
+  ],
+  schemes: [{ name: "Kidnap Smurfs" }, ...schemeExamples],
+};
+
+const store = createMainStore(mainInitialState);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={store} />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
